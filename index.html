@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Edukasi Animasi DKV - Advanced</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Dark Mode Styles */
+        .dark {
+            color-scheme: dark;
+        }
+        
+        .dark body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+            color: #f9fafb;
+        }
+        
+        .dark .bg-white {
+            background-color: #1f2937 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .text-gray-800 {
+            color: #f9fafb !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #d1d5db !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-500 {
+            color: #6b7280 !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .border-gray-300 {
+            border-color: #4b5563 !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #374151 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gray-100 {
+            background-color: #4b5563 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gray-200 {
+            background-color: #6b7280 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-purple-50 {
+            background: linear-gradient(to right, #312e81, #1e1b4b) !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-blue-50 {
+            background: linear-gradient(to right, #1e3a8a, #1e40af) !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-green-50 {
+            background: linear-gradient(to right, #14532d, #166534) !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-yellow-50 {
+            background: linear-gradient(to right, #92400e, #b45309) !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-red-50 {
+            background: linear-gradient(to right, #991b1b, #dc2626) !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-gray-50 {
+            background: linear-gradient(to right, #374151, #4b5563) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-blue-100 {
+            background: linear-gradient(to right, #1e40af, #3730a3) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-purple-100 {
+            background: linear-gradient(to right, #5b21b6, #7c3aed) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-yellow-50.to-orange-50 {
+            background: linear-gradient(to right, #92400e, #ea580c) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+        }
+        
+        .dark .bg-gradient-to-br.from-purple-100 {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+        }
+        
+        .dark .bg-gradient-to-br.from-blue-100 {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+        }
+        
+        .dark .bg-gradient-to-br.from-indigo-100 {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+        }
+        
+        .dark .border-blue-200 {
+            border-color: #3730a3 !important;
+        }
+        
+        .dark .border-green-300 {
+            border-color: #16a34a !important;
+        }
+        
+        .dark .border-red-300 {
+            border-color: #dc2626 !important;
+        }
+        
+        .dark .border-yellow-400 {
+            border-color: #eab308 !important;
+        }
+        
+        .dark .bg-yellow-200 {
+            background-color: #eab308 !important;
+        }
+        
+        .dark .drop-zone {
+            background-color: #374151;
+            border-color: #6b7280;
+        }
+        
+        .dark .drop-zone.drag-over {
+            background-color: #1e40af;
+            border-color: #3b82f6;
+        }
+        
+        .dark .drop-zone.filled {
+            background-color: #166534;
+            border-color: #16a34a;
+        }
+        
+        .dark input, .dark select {
+            background-color: #374151 !important;
+            border-color: #6b7280 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark input:focus, .dark select:focus {
+            border-color: #8b5cf6 !important;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+        }
+        
+        /* Fix modal and card backgrounds */
+        .dark .rounded-3xl, .dark .rounded-2xl, .dark .rounded-xl {
+            background-color: #1f2937 !important;
+            color: #f9fafb !important;
+        }
+        
+        /* Fix specific gradient backgrounds in dark mode */
+        .dark .bg-gradient-to-r.from-purple-50.to-blue-50 {
+            background: linear-gradient(to right, #312e81, #1e1b4b) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .bg-gradient-to-r.from-purple-100.to-blue-100 {
+            background: linear-gradient(to right, #312e81, #1e1b4b) !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .choice-button {
+            background-color: #374151 !important;
+            border-color: #6b7280 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .choice-button:hover {
+            border-color: #3b82f6 !important;
+            background-color: #4b5563 !important;
+        }
+        
+        .dark .choice-button.selected {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+            color: white !important;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .theme-toggle.dark-mode {
+            background: #374151;
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .theme-toggle.dark-mode::before {
+            transform: translateX(30px);
+            background: #1f2937;
+        }
+        
+        .theme-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-icon.sun {
+            left: 8px;
+            opacity: 1;
+        }
+        
+        .theme-icon.moon {
+            right: 8px;
+            opacity: 0;
+        }
+        
+        .theme-toggle.dark-mode .theme-icon.sun {
+            opacity: 0;
+        }
+        
+        .theme-toggle.dark-mode .theme-icon.moon {
+            opacity: 1;
+        }
+        
+        .drag-item {
+            transition: all 0.3s ease;
+            cursor: grab;
+            touch-action: none;
+        }
+        
+        .drag-item:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+        
+        .drop-zone {
+            transition: all 0.3s ease;
+            border: 2px dashed #e5e7eb;
+            min-height: 80px;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        
+        .drop-zone.filled {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        
+        .correct-animation {
+            animation: correctPulse 0.8s ease-in-out;
+        }
+        
+        .wrong-animation {
+            animation: wrongShake 0.8s ease-in-out;
+        }
+        
+        .timeout-animation {
+            animation: timeoutFlash 1s ease-in-out;
+        }
+        
+        @keyframes correctPulse {
+            0% { transform: scale(1); background-color: transparent; }
+            50% { transform: scale(1.05); background-color: #10b981; color: white; }
+            100% { transform: scale(1); background-color: transparent; }
+        }
+        
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); background-color: #ef4444; }
+            75% { transform: translateX(10px); background-color: #ef4444; }
+        }
+        
+        @keyframes timeoutFlash {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: #f59e0b; }
+        }
+        
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+        }
+        
+        @keyframes achievement-popup {
+            0% { transform: scale(0) rotate(180deg); opacity: 0; }
+            50% { transform: scale(1.1) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        .achievement-popup {
+            animation: achievement-popup 0.6s ease-out;
+        }
+        
+        @keyframes rarity-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.8); }
+        }
+        
+        .rare-glow {
+            animation: rarity-glow 2s ease-in-out infinite;
+        }
+        
+        .level-progress {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        
+        .timer-bar {
+            transition: width 0.1s linear;
+        }
+        
+        .timer-green { background: linear-gradient(90deg, #10b981, #059669); }
+        .timer-yellow { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .timer-red { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        
+        .choice-button {
+            transition: all 0.2s ease;
+        }
+        
+        .choice-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .choice-button.selected {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 640px) {
+            .drag-item {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .choice-button {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 min-h-screen">
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-10 left-10 w-12 h-12 bg-yellow-300 rounded-full animate-bounce opacity-70" style="animation-delay: 0s; animation-duration: 2s;"></div>
+            <div class="absolute top-20 right-16 w-8 h-8 bg-pink-300 rounded-full animate-bounce opacity-60" style="animation-delay: 0.5s; animation-duration: 2.5s;"></div>
+            <div class="absolute bottom-20 left-20 w-16 h-16 bg-blue-300 rounded-full animate-bounce opacity-50" style="animation-delay: 1s; animation-duration: 3s;"></div>
+            <div class="absolute bottom-10 right-10 w-10 h-10 bg-green-300 rounded-full animate-bounce opacity-65" style="animation-delay: 1.5s; animation-duration: 2.2s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-6 h-6 bg-purple-300 rounded-full animate-pulse opacity-40" style="animation-delay: 0.3s;"></div>
+            <div class="absolute top-1/3 right-1/3 w-14 h-14 bg-orange-300 rounded-full animate-pulse opacity-45" style="animation-delay: 0.7s;"></div>
+            <div class="absolute bottom-1/3 left-1/2 w-9 h-9 bg-red-300 rounded-full animate-bounce opacity-55" style="animation-delay: 2s; animation-duration: 2.8s;"></div>
+            
+            <!-- Floating Icons -->
+            <div class="absolute top-16 left-1/2 text-2xl animate-bounce opacity-60" style="animation-delay: 0.8s; animation-duration: 3.5s;">🎨</div>
+            <div class="absolute bottom-32 right-1/4 text-3xl animate-pulse opacity-50" style="animation-delay: 1.2s;">✨</div>
+            <div class="absolute top-1/4 right-20 text-2xl animate-bounce opacity-70" style="animation-delay: 1.8s; animation-duration: 2.7s;">🚀</div>
+            <div class="absolute bottom-1/4 left-16 text-2xl animate-pulse opacity-60" style="animation-delay: 2.5s;">🎯</div>
+        </div>
+        
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full relative z-10 transform hover:scale-105 transition-transform duration-300">
+            <div class="text-center mb-6 sm:mb-8">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
+                    <span class="text-2xl sm:text-3xl animate-bounce">🎮</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 animate-fade-in" data-text="title">Game Edukasi</h1>
+                <h2 class="text-lg sm:text-xl font-semibold text-purple-600 animate-fade-in" style="animation-delay: 0.2s;">Animasi DKV</h2>
+                <p class="text-sm sm:text-base text-gray-600 mt-2 animate-fade-in" data-text="subtitle" style="animation-delay: 0.4s;">5 Level Berbeda - Timer 30 Detik!</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-text="nameLabel">Nama Lengkap</label>
+                    <input type="text" id="playerName" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base" data-placeholder="namePlaceholder" placeholder="Masukkan nama kamu">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-text="majorLabel">Jurusan</label>
+                    <select id="playerMajor" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base">
+                        <option value="" data-text="selectMajor">Pilih Jurusan</option>
+                        <option value="DKV">Desain Komunikasi Visual (DKV)</option>
+                        <option value="MM">Multimedia</option>
+                        <option value="RPL">Rekayasa Perangkat Lunak</option>
+                        <option value="TKJ">Teknik Komputer Jaringan</option>
+                        <option value="OTKP">Otomatisasi Tata Kelola Perkantoran</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-text="classLabel">Kelas</label>
+                    <select id="playerClass" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base">
+                        <option value="" data-text="selectClass">Pilih Kelas</option>
+                        <option value="X">Kelas X</option>
+                        <option value="XI">Kelas XI</option>
+                        <option value="XII">Kelas XII</option>
+                    </select>
+                </div>
+                
+                <button onclick="startGame()" class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base" data-text="startButton">
+                    Mulai Bermain
+                </button>
+                
+                <!-- Theme Toggle -->
+                <div class="flex justify-center mt-4 mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-sm text-gray-600" data-text="themeLabel">Theme:</span>
+                        <button onclick="toggleTheme()" class="theme-toggle" id="themeToggle">
+                            <span class="theme-icon sun">☀️</span>
+                            <span class="theme-icon moon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Menu Buttons -->
+                <div class="grid grid-cols-2 gap-2 mt-4">
+                    <button onclick="showLeaderboard()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-2 px-3 rounded-xl font-medium hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 text-xs sm:text-sm" data-text="leaderboardButton">
+                        🏆 Leaderboard
+                    </button>
+                    <button onclick="showAchievements()" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white py-2 px-3 rounded-xl font-medium hover:from-purple-500 hover:to-pink-600 transition-all duration-300 text-xs sm:text-sm" data-text="achievementsButton">
+                        🏅 Achievement
+                    </button>
+                    <button onclick="showTutorial()" class="bg-gradient-to-r from-green-400 to-emerald-500 text-white py-2 px-3 rounded-xl font-medium hover:from-green-500 hover:to-emerald-600 transition-all duration-300 text-xs sm:text-sm" data-text="tutorialButton">
+                        📚 Tutorial
+                    </button>
+                    <button onclick="showSettings()" class="bg-gradient-to-r from-gray-400 to-gray-600 text-white py-2 px-3 rounded-xl font-medium hover:from-gray-500 hover:to-gray-700 transition-all duration-300 text-xs sm:text-sm" data-text="settingsButton">
+                        ⚙️ Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="leaderboardScreen" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-6">
+                <div class="text-3xl sm:text-4xl mb-2">🏆</div>
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2" data-text="leaderboardTitle">Leaderboard</h1>
+                <p class="text-sm text-gray-600" data-text="leaderboardSubtitle">Pemain Terbaik Hari Ini</p>
+            </div>
+            
+            <div class="space-y-3 mb-6" id="leaderboardList">
+                <!-- Leaderboard entries will be populated here -->
+            </div>
+            
+            <div class="text-center">
+                <button onclick="backToWelcome()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-6 rounded-xl font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="backButton">
+                    Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievements Screen -->
+    <div id="achievementsScreen" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-6">
+                <div class="text-3xl sm:text-4xl mb-2">🏅</div>
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2" data-text="achievementsTitle">Achievement</h1>
+                <p class="text-sm text-gray-600" data-text="achievementsSubtitle">Koleksi Pencapaian Kamu</p>
+            </div>
+            
+            <div class="space-y-3 mb-6" id="achievementsList">
+                <!-- Achievement entries will be populated here -->
+            </div>
+            
+            <div class="text-center">
+                <button onclick="backToWelcome()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-6 rounded-xl font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="backButton">
+                    Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorial Screen -->
+    <div id="tutorialScreen" class="hidden min-h-screen p-4 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+                <!-- Animated Background Elements -->
+                <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                    <div class="absolute top-4 left-4 w-8 h-8 bg-yellow-300 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+                    <div class="absolute top-8 right-8 w-6 h-6 bg-pink-300 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-8 left-8 w-10 h-10 bg-blue-300 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-4 right-4 w-7 h-7 bg-green-300 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
+                    <div class="absolute top-1/2 left-1/4 w-5 h-5 bg-purple-300 rounded-full animate-pulse"></div>
+                    <div class="absolute top-1/3 right-1/3 w-4 h-4 bg-orange-300 rounded-full animate-pulse" style="animation-delay: 0.7s;"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl sm:text-5xl mb-4 animate-bounce">🎮</div>
+                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2" data-text="tutorialTitle">Cara Bermain</h1>
+                        <p class="text-sm text-gray-600" data-text="tutorialSubtitle">Pelajari cara bermain game edukasi animasi DKV</p>
+                    </div>
+                    
+                    <div class="space-y-6 max-h-[60vh] overflow-y-auto">
+                        <!-- Level 1: Drag & Drop -->
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6 border-l-4 border-blue-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">📥</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-blue-700" data-text="level1Title">Level 1: Drag & Drop</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="level1Step1">• Baca pertanyaan dengan teliti</li>
+                                <li class="flex items-start" data-text="level1Step2">• Seret jawaban yang benar ke kotak drop zone</li>
+                                <li class="flex items-start" data-text="level1Step3">• Klik "Cek Jawaban" untuk memverifikasi</li>
+                                <li class="flex items-start" data-text="level1Step4">• Waktu: 30 detik per soal</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Level 2: Multiple Choice -->
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 sm:p-6 border-l-4 border-green-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">✅</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-green-700" data-text="level2Title">Level 2: Pilihan Ganda</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="level2Step1">• Pilih salah satu jawaban dari 4 pilihan</li>
+                                <li class="flex items-start" data-text="level2Step2">• Klik pada pilihan yang menurutmu benar</li>
+                                <li class="flex items-start" data-text="level2Step3">• Tombol akan berubah warna saat dipilih</li>
+                                <li class="flex items-start" data-text="level2Step4">• Klik "Cek Jawaban" untuk konfirmasi</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Level 3: True/False -->
+                        <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-4 sm:p-6 border-l-4 border-yellow-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">⚖️</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-yellow-700" data-text="level3Title">Level 3: Benar/Salah</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="level3Step1">• Baca pernyataan dengan cermat</li>
+                                <li class="flex items-start" data-text="level3Step2">• Pilih "BENAR" jika pernyataan benar</li>
+                                <li class="flex items-start" data-text="level3Step3">• Pilih "SALAH" jika pernyataan salah</li>
+                                <li class="flex items-start" data-text="level3Step4">• Hanya ada 2 pilihan, pilih dengan hati-hati</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Level 4: Fill in the Blank -->
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 sm:p-6 border-l-4 border-purple-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">📝</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-purple-700" data-text="level4Title">Level 4: Isi Titik-titik</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="level4Step1">• Baca kalimat yang memiliki bagian kosong</li>
+                                <li class="flex items-start" data-text="level4Step2">• Pilih kata yang tepat untuk mengisi bagian kosong</li>
+                                <li class="flex items-start" data-text="level4Step3">• Pastikan kata yang dipilih sesuai konteks</li>
+                                <li class="flex items-start" data-text="level4Step4">• Klik jawaban yang menurutmu paling tepat</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Level 5: Boss Challenge -->
+                        <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-4 sm:p-6 border-l-4 border-red-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">👑</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-red-700" data-text="level5Title">Level 5: Boss Challenge</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="level5Step1">• Kombinasi dari semua jenis soal</li>
+                                <li class="flex items-start" data-text="level5Step2">• Soal lebih menantang dan kompleks</li>
+                                <li class="flex items-start" data-text="level5Step3">• Gunakan semua pengetahuan yang sudah dipelajari</li>
+                                <li class="flex items-start" data-text="level5Step4">• Level terakhir untuk menguji kemampuan</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- General Tips -->
+                        <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-4 sm:p-6 border-l-4 border-gray-400">
+                            <div class="flex items-center mb-3">
+                                <div class="text-2xl mr-3">💡</div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-gray-700" data-text="tipsTitle">Tips Bermain</h3>
+                            </div>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start" data-text="tip1">• Baca soal dengan teliti sebelum menjawab</li>
+                                <li class="flex items-start" data-text="tip2">• Perhatikan timer - kamu punya 30 detik per soal</li>
+                                <li class="flex items-start" data-text="tip3">• Jika salah, kamu akan kembali ke Level 1</li>
+                                <li class="flex items-start" data-text="tip4">• Selesaikan 5 soal per level untuk naik level</li>
+                                <li class="flex items-start" data-text="tip5">• Gunakan tombol pause jika perlu istirahat</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <button onclick="backToWelcome()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-8 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base transform hover:scale-105" data-text="backButton">
+                            Kembali
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settingsScreen" class="hidden min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full">
+            <div class="text-center mb-6">
+                <div class="text-3xl sm:text-4xl mb-2">⚙️</div>
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2" data-text="settingsTitle">Pengaturan</h1>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Language Setting -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3" data-text="languageLabel">Bahasa / Language</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="changeLanguage('id')" id="langId" class="bg-blue-500 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm">
+                            🇮🇩 Indonesia
+                        </button>
+                        <button onclick="changeLanguage('en')" id="langEn" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm">
+                            🇺🇸 English
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Credits -->
+                <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4">
+                    <h3 class="font-semibold text-gray-800 mb-3 text-sm sm:text-base" data-text="creditsTitle">Credits</h3>
+                    <div class="text-xs sm:text-sm text-gray-600 space-y-2">
+                        <div><strong data-text="developerLabel">Developer:</strong> Kurnia Deni</div>
+                        <div><strong data-text="schoolLabel">Sekolah:</strong> SMK - Jurusan DKV</div>
+                        <div><strong data-text="projectLabel">Project:</strong> Game Edukasi Animasi</div>
+                        <div><strong data-text="versionLabel">Version:</strong> 2.0.0</div>
+                        <div><strong data-text="yearLabel">Tahun:</strong> 2024</div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="mt-4 pt-3 border-t border-purple-200">
+                        <h4 class="font-medium text-gray-700 mb-2 text-xs sm:text-sm" data-text="followLabel">Follow Me:</h4>
+                        <div class="flex space-x-3 justify-center">
+                            <a href="#" class="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 text-xs">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-2 bg-gradient-to-r from-gray-800 to-black text-white px-3 py-2 rounded-lg hover:from-gray-900 hover:to-gray-800 transition-all duration-300 text-xs">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                                <span>TikTok</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Copyright -->
+                    <div class="mt-4 pt-3 border-t border-purple-200 text-center">
+                        <p class="text-xs text-gray-500" data-text="copyright">© 2024 Kurnia Deni. All rights reserved.</p>
+                        <p class="text-xs text-gray-400 mt-1" data-text="license">Educational Project - SMK DKV</p>
+                    </div>
+                </div>
+                
+                <!-- Reset Data -->
+                <div>
+                    <button onclick="resetLeaderboard()" class="w-full bg-gradient-to-r from-red-400 to-red-600 text-white py-2 px-4 rounded-xl font-medium hover:from-red-500 hover:to-red-700 transition-all duration-300 text-sm" data-text="resetButton">
+                        🗑️ Reset Leaderboard
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6">
+                <button onclick="backToWelcome()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-6 rounded-xl font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="backButton">
+                    Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="hidden min-h-screen p-2 sm:p-4">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-lg p-3 sm:p-4 mb-4 sm:mb-6">
+            <div class="flex justify-between items-center mb-3 sm:mb-4">
+                <div class="flex-1">
+                    <h3 class="text-sm sm:text-lg font-semibold text-gray-800" id="playerInfo">Selamat datang!</h3>
+                    <p class="text-xs sm:text-sm text-gray-600" id="levelType">Drag & Drop</p>
+                </div>
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <button onclick="toggleTheme()" class="theme-toggle scale-75" id="gameThemeToggle" title="Toggle Theme">
+                        <span class="theme-icon sun">☀️</span>
+                        <span class="theme-icon moon">🌙</span>
+                    </button>
+                    <button onclick="pauseGame()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-2 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300" title="Pause Game">
+                        ⏸️
+                    </button>
+                    <button onclick="goHome()" class="bg-gradient-to-r from-gray-400 to-gray-600 text-white p-2 rounded-lg hover:from-gray-500 hover:to-gray-700 transition-all duration-300" title="Kembali ke Beranda">
+                        🏠
+                    </button>
+                    <div class="text-right">
+                        <div class="text-lg sm:text-2xl font-bold text-purple-600" id="currentLevel">Level 1</div>
+                        <div class="text-xs sm:text-sm text-gray-600" id="questionCounter">Soal 1 dari 5</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timer -->
+            <div class="mb-3">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs sm:text-sm font-medium text-gray-700" data-text="timeLeft">Waktu Tersisa:</span>
+                    <span class="text-sm sm:text-lg font-bold text-gray-800" id="timerDisplay">30</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2 sm:h-3">
+                    <div class="timer-bar timer-green h-2 sm:h-3 rounded-full transition-all duration-100" id="timerBar" style="width: 100%"></div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-2 sm:h-3">
+                <div class="level-progress h-2 sm:h-3 rounded-full transition-all duration-500" id="progressBar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Question Area -->
+        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
+            <h2 class="text-base sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6" id="questionText">Loading...</h2>
+            
+            <!-- Game Content Area -->
+            <div id="gameContent">
+                <!-- Content will be populated based on level type -->
+            </div>
+            
+            <button onclick="checkAnswer()" id="submitBtn" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base mt-4" disabled data-text="checkAnswer">
+                Cek Jawaban
+            </button>
+        </div>
+
+        <!-- Pause Modal -->
+        <div id="pauseModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center">
+                <div class="text-4xl sm:text-6xl mb-4">⏸️</div>
+                <h3 class="text-lg sm:text-2xl font-bold mb-4 text-gray-800" data-text="gamePaused">Game Dijeda</h3>
+                <p class="text-sm sm:text-base text-gray-600 mb-6" data-text="pauseMessage">Timer dihentikan sementara. Klik lanjut untuk melanjutkan permainan.</p>
+                <div class="space-y-3">
+                    <button onclick="resumeGame()" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 text-sm sm:text-base" data-text="resumeButton">
+                        ▶️ Lanjut
+                    </button>
+                    <button onclick="goHome()" class="w-full bg-gradient-to-r from-gray-400 to-gray-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-gray-500 hover:to-gray-700 transition-all duration-300 text-sm sm:text-base" data-text="homeButton">
+                        🏠 Kembali ke Beranda
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Modal -->
+        <div id="feedbackModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center">
+                <div id="feedbackIcon" class="text-4xl sm:text-6xl mb-4">✅</div>
+                <h3 id="feedbackTitle" class="text-lg sm:text-2xl font-bold mb-2">Benar!</h3>
+                <p id="feedbackMessage" class="text-sm sm:text-base text-gray-600 mb-6">Jawaban kamu tepat!</p>
+                <button onclick="nextQuestion()" id="nextBtn" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="nextButton">
+                    Lanjut
+                </button>
+            </div>
+        </div>
+
+        <!-- Achievement Popup Modal -->
+        <div id="achievementModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center achievement-popup">
+                <div class="text-4xl sm:text-6xl mb-4" id="achievementIcon">🏅</div>
+                <h3 class="text-lg sm:text-2xl font-bold mb-2 text-purple-600" data-text="achievementUnlocked">Achievement Unlocked!</h3>
+                <div class="bg-gradient-to-r p-4 rounded-xl mb-4" id="achievementCard">
+                    <div class="text-2xl mb-2" id="achievementCardIcon">🏅</div>
+                    <h4 class="font-bold text-white text-lg" id="achievementName">Achievement Name</h4>
+                    <p class="text-white text-sm opacity-90" id="achievementDescription">Achievement Description</p>
+                    <div class="mt-2">
+                        <span class="px-2 py-1 bg-white bg-opacity-20 rounded-full text-xs font-medium text-white" id="achievementRarity">RARE</span>
+                    </div>
+                </div>
+                <button onclick="closeAchievementModal()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="continueButton">
+                    Lanjut
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completion Screen -->
+    <div id="completionScreen" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center">
+            <div class="text-4xl sm:text-6xl mb-4">🏆</div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2" data-text="congratulations">Selamat!</h1>
+            <p class="text-sm sm:text-lg text-gray-600 mb-6" data-text="gameCompleted">Kamu telah menyelesaikan semua level!</p>
+            <div class="bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-4 mb-6">
+                <p class="text-purple-700 font-semibold text-sm sm:text-base">Level Tertinggi: 5</p>
+                <p class="text-blue-700 text-sm sm:text-base" id="finalTime">Total Waktu: --</p>
+            </div>
+            <button onclick="restartGame()" class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 text-sm sm:text-base" data-text="playAgain">
+                Main Lagi
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            playerName: '',
+            playerMajor: '',
+            currentLevel: 1,
+            currentQuestion: 1,
+            maxLevel: 5,
+            draggedItem: null,
+            currentAnswer: null,
+            currentLanguage: 'id',
+            startTime: null,
+            score: 0,
+            timer: 30,
+            timerInterval: null,
+            levelTypes: ['drag-drop', 'multiple-choice', 'true-false', 'fill-blank', 'boss-challenge']
+        };
+
+        // Achievement System
+        let achievements = JSON.parse(localStorage.getItem('dkvGameAchievements')) || [];
+        
+        const achievementTypes = {
+            'boss-winner': {
+                id: 'boss-winner',
+                name: { id: 'Penakluk Boss', en: 'Boss Conqueror' },
+                description: { id: 'Mengalahkan Boss Challenge Level 5', en: 'Defeated Boss Challenge Level 5' },
+                icon: '👑',
+                rarity: 'rare',
+                color: 'from-purple-500 to-pink-500'
+            },
+            'smart-player': {
+                id: 'smart-player',
+                name: { id: 'Pemain Cerdas', en: 'Smart Player' },
+                description: { id: 'Mencoba tantangan yang sulit', en: 'Attempted difficult challenges' },
+                icon: '🧠',
+                rarity: 'common',
+                color: 'from-blue-500 to-cyan-500'
+            },
+            'first-timer': {
+                id: 'first-timer',
+                name: { id: 'Pemula Berani', en: 'Brave Beginner' },
+                description: { id: 'Menyelesaikan game untuk pertama kali', en: 'Completed the game for the first time' },
+                icon: '🌟',
+                rarity: 'common',
+                color: 'from-yellow-500 to-orange-500'
+            },
+            'speed-demon': {
+                id: 'speed-demon',
+                name: { id: 'Kilat Cepat', en: 'Speed Demon' },
+                description: { id: 'Menyelesaikan level dalam waktu kurang dari 60 detik', en: 'Completed level in under 60 seconds' },
+                icon: '⚡',
+                rarity: 'uncommon',
+                color: 'from-green-500 to-emerald-500'
+            },
+            'persistent': {
+                id: 'persistent',
+                name: { id: 'Pantang Menyerah', en: 'Never Give Up' },
+                description: { id: 'Bermain lebih dari 5 kali', en: 'Played more than 5 times' },
+                icon: '💪',
+                rarity: 'uncommon',
+                color: 'from-red-500 to-pink-500'
+            }
+        };
+
+        // Language System
+        const translations = {
+            id: {
+                title: "Game Edukasi",
+                subtitle: "5 Level Berbeda - Timer 30 Detik!",
+                nameLabel: "Nama Lengkap",
+                namePlaceholder: "Masukkan nama kamu",
+                majorLabel: "Jurusan",
+                selectMajor: "Pilih Jurusan",
+                classLabel: "Kelas",
+                selectClass: "Pilih Kelas",
+                startButton: "Mulai Bermain",
+                leaderboardButton: "🏆 Leaderboard",
+                achievementsButton: "🏅 Achievement",
+                tutorialButton: "📚 Tutorial",
+                settingsButton: "⚙️ Settings",
+                achievementsTitle: "Achievements",
+                achievementsSubtitle: "Your Achievement Collection",
+                achievementUnlocked: "Achievement Unlocked!",
+                continueButton: "Continue",
+                tutorialTitle: "Cara Bermain",
+                tutorialSubtitle: "Pelajari cara bermain game edukasi animasi DKV",
+                level1Title: "Level 1: Drag & Drop",
+                level1Step1: "• Baca pertanyaan dengan teliti",
+                level1Step2: "• Seret jawaban yang benar ke kotak drop zone",
+                level1Step3: "• Klik \"Cek Jawaban\" untuk memverifikasi",
+                level1Step4: "• Waktu: 30 detik per soal",
+                level2Title: "Level 2: Pilihan Ganda",
+                level2Step1: "• Pilih salah satu jawaban dari 4 pilihan",
+                level2Step2: "• Klik pada pilihan yang menurutmu benar",
+                level2Step3: "• Tombol akan berubah warna saat dipilih",
+                level2Step4: "• Klik \"Cek Jawaban\" untuk konfirmasi",
+                level3Title: "Level 3: Benar/Salah",
+                level3Step1: "• Baca pernyataan dengan cermat",
+                level3Step2: "• Pilih \"BENAR\" jika pernyataan benar",
+                level3Step3: "• Pilih \"SALAH\" jika pernyataan salah",
+                level3Step4: "• Hanya ada 2 pilihan, pilih dengan hati-hati",
+                level4Title: "Level 4: Isi Titik-titik",
+                level4Step1: "• Baca kalimat yang memiliki bagian kosong",
+                level4Step2: "• Pilih kata yang tepat untuk mengisi bagian kosong",
+                level4Step3: "• Pastikan kata yang dipilih sesuai konteks",
+                level4Step4: "• Klik jawaban yang menurutmu paling tepat",
+                level5Title: "Level 5: Boss Challenge",
+                level5Step1: "• Kombinasi dari semua jenis soal",
+                level5Step2: "• Soal lebih menantang dan kompleks",
+                level5Step3: "• Gunakan semua pengetahuan yang sudah dipelajari",
+                level5Step4: "• Level terakhir untuk menguji kemampuan",
+                tipsTitle: "Tips Bermain",
+                tip1: "• Baca soal dengan teliti sebelum menjawab",
+                tip2: "• Perhatikan timer - kamu punya 30 detik per soal",
+                tip3: "• Jika salah, kamu akan kembali ke Level 1",
+                tip4: "• Selesaikan 5 soal per level untuk naik level",
+                tip5: "• Gunakan tombol pause jika perlu istirahat",
+                gamePaused: "Game Dijeda",
+                pauseMessage: "Timer dihentikan sementara. Klik lanjut untuk melanjutkan permainan.",
+                resumeButton: "▶️ Lanjut",
+                homeButton: "🏠 Kembali ke Beranda",
+                leaderboardTitle: "Leaderboard",
+                leaderboardSubtitle: "Pemain Terbaik Hari Ini",
+                settingsTitle: "Pengaturan",
+                languageLabel: "Bahasa / Language",
+                creditsTitle: "Credits",
+                developerLabel: "Developer:",
+                schoolLabel: "Sekolah:",
+                projectLabel: "Project:",
+                versionLabel: "Version:",
+                yearLabel: "Tahun:",
+                resetButton: "🗑️ Reset Leaderboard",
+                backButton: "Kembali",
+                followLabel: "Follow Me:",
+                copyright: "© 2024 Kurnia Deni. All rights reserved.",
+                license: "Educational Project - SMK DKV",
+                themeLabel: "Tema:",
+                timeLeft: "Waktu Tersisa:",
+                dragHere: "Seret jawaban yang benar ke sini",
+                checkAnswer: "Cek Jawaban",
+                correct: "Benar!",
+                wrong: "Salah!",
+                timeout: "Waktu Habis!",
+                correctMessage: "Jawaban kamu tepat! Lanjut ke soal berikutnya.",
+                wrongMessage: "Kamu akan kembali ke Level 1.",
+                timeoutMessage: "Waktu habis! Kamu akan kembali ke Level 1.",
+                nextButton: "Lanjut",
+                congratulations: "Selamat!",
+                gameCompleted: "Kamu telah menyelesaikan semua level!",
+                playAgain: "Main Lagi",
+                levelTypes: {
+                    'drag-drop': 'Drag & Drop',
+                    'multiple-choice': 'Pilihan Ganda',
+                    'true-false': 'Benar/Salah',
+                    'fill-blank': 'Isi Titik-titik',
+                    'boss-challenge': 'Boss Challenge'
+                }
+            },
+            en: {
+                title: "Educational Game",
+                subtitle: "5 Different Levels - 30 Second Timer!",
+                nameLabel: "Full Name",
+                namePlaceholder: "Enter your name",
+                majorLabel: "Major",
+                selectMajor: "Select Major",
+                classLabel: "Class",
+                selectClass: "Select Class",
+                startButton: "Start Playing",
+                leaderboardButton: "🏆 Leaderboard",
+                achievementsButton: "🏅 Achievement",
+                tutorialButton: "📚 Tutorial",
+                settingsButton: "⚙️ Settings",
+                achievementsTitle: "Achievements",
+                achievementsSubtitle: "Your Achievement Collection",
+                achievementUnlocked: "Achievement Unlocked!",
+                continueButton: "Continue",
+                tutorialTitle: "How to Play",
+                tutorialSubtitle: "Learn how to play the DKV animation educational game",
+                level1Title: "Level 1: Drag & Drop",
+                level1Step1: "• Read the question carefully",
+                level1Step2: "• Drag the correct answer to the drop zone",
+                level1Step3: "• Click \"Check Answer\" to verify",
+                level1Step4: "• Time: 30 seconds per question",
+                level2Title: "Level 2: Multiple Choice",
+                level2Step1: "• Choose one answer from 4 options",
+                level2Step2: "• Click on the option you think is correct",
+                level2Step3: "• Button will change color when selected",
+                level2Step4: "• Click \"Check Answer\" to confirm",
+                level3Title: "Level 3: True/False",
+                level3Step1: "• Read the statement carefully",
+                level3Step2: "• Choose \"TRUE\" if the statement is correct",
+                level3Step3: "• Choose \"FALSE\" if the statement is wrong",
+                level3Step4: "• Only 2 options, choose carefully",
+                level4Title: "Level 4: Fill in the Blank",
+                level4Step1: "• Read the sentence with missing parts",
+                level4Step2: "• Choose the right word to fill the blank",
+                level4Step3: "• Make sure the word fits the context",
+                level4Step4: "• Click the answer you think is most appropriate",
+                level5Title: "Level 5: Boss Challenge",
+                level5Step1: "• Combination of all question types",
+                level5Step2: "• More challenging and complex questions",
+                level5Step3: "• Use all knowledge you've learned",
+                level5Step4: "• Final level to test your abilities",
+                tipsTitle: "Playing Tips",
+                tip1: "• Read questions carefully before answering",
+                tip2: "• Watch the timer - you have 30 seconds per question",
+                tip3: "• If wrong, you'll return to Level 1",
+                tip4: "• Complete 5 questions per level to advance",
+                tip5: "• Use pause button if you need a break",
+                gamePaused: "Game Paused",
+                pauseMessage: "Timer stopped temporarily. Click continue to resume the game.",
+                resumeButton: "▶️ Continue",
+                homeButton: "🏠 Back to Home",
+                leaderboardTitle: "Leaderboard",
+                leaderboardSubtitle: "Today's Best Players",
+                settingsTitle: "Settings",
+                languageLabel: "Bahasa / Language",
+                creditsTitle: "Credits",
+                developerLabel: "Developer:",
+                schoolLabel: "School:",
+                projectLabel: "Project:",
+                versionLabel: "Version:",
+                yearLabel: "Year:",
+                resetButton: "🗑️ Reset Leaderboard",
+                backButton: "Back",
+                followLabel: "Follow Me:",
+                copyright: "© 2024 Kurnia Deni. All rights reserved.",
+                license: "Educational Project - SMK DKV",
+                themeLabel: "Theme:",
+                timeLeft: "Time Left:",
+                dragHere: "Drag the correct answer here",
+                checkAnswer: "Check Answer",
+                correct: "Correct!",
+                wrong: "Wrong!",
+                timeout: "Time's Up!",
+                correctMessage: "Your answer is correct! Continue to the next question.",
+                wrongMessage: "You will return to Level 1.",
+                timeoutMessage: "Time's up! You will return to Level 1.",
+                nextButton: "Next",
+                congratulations: "Congratulations!",
+                gameCompleted: "You have completed all levels!",
+                playAgain: "Play Again",
+                levelTypes: {
+                    'drag-drop': 'Drag & Drop',
+                    'multiple-choice': 'Multiple Choice',
+                    'true-false': 'True/False',
+                    'fill-blank': 'Fill in the Blank',
+                    'boss-challenge': 'Boss Challenge'
+                }
+            }
+        };
+
+        // Questions Database
+        const questions = {
+            1: [ // Drag & Drop
+                {
+                    question: "Apa kepanjangan dari FPS dalam animasi?",
+                    options: ["Frame Per Second", "File Per System", "Fast Play Speed", "Final Project Show"],
+                    correct: "Frame Per Second"
+                },
+                {
+                    question: "Software yang paling umum digunakan untuk animasi 2D adalah?",
+                    options: ["Adobe After Effects", "Blender", "Photoshop", "Adobe Animate"],
+                    correct: "Adobe Animate"
+                },
+                {
+                    question: "Berapa FPS standar untuk animasi film?",
+                    options: ["24 FPS", "30 FPS", "60 FPS", "12 FPS"],
+                    correct: "24 FPS"
+                },
+                {
+                    question: "Teknik animasi yang menggunakan gambar berurutan disebut?",
+                    options: ["Frame by Frame", "Motion Tween", "Shape Tween", "3D Animation"],
+                    correct: "Frame by Frame"
+                },
+                {
+                    question: "Prinsip animasi yang membuat gerakan terlihat lebih hidup adalah?",
+                    options: ["Squash and Stretch", "Copy Paste", "Duplicate", "Transform"],
+                    correct: "Squash and Stretch"
+                }
+            ],
+            2: [ // Multiple Choice
+                {
+                    question: "Apa itu keyframe dalam animasi?",
+                    options: ["Frame utama yang menentukan posisi", "Frame terakhir animasi", "Frame yang rusak", "Frame kosong"],
+                    correct: "Frame utama yang menentukan posisi"
+                },
+                {
+                    question: "Timeline dalam software animasi berfungsi untuk?",
+                    options: ["Mengatur waktu dan urutan animasi", "Menggambar karakter", "Mewarnai objek", "Menyimpan file"],
+                    correct: "Mengatur waktu dan urutan animasi"
+                },
+                {
+                    question: "Onion skinning dalam animasi berguna untuk?",
+                    options: ["Melihat frame sebelum dan sesudah", "Menghapus frame", "Menyalin frame", "Mengunci frame"],
+                    correct: "Melihat frame sebelum dan sesudah"
+                },
+                {
+                    question: "Ease in dan ease out dalam animasi berfungsi untuk?",
+                    options: ["Membuat gerakan lebih natural", "Menghentikan animasi", "Mempercepat render", "Mengubah warna"],
+                    correct: "Membuat gerakan lebih natural"
+                },
+                {
+                    question: "Walk cycle adalah?",
+                    options: ["Animasi karakter berjalan berulang", "Animasi terbang", "Animasi diam", "Animasi melompat"],
+                    correct: "Animasi karakter berjalan berulang"
+                }
+            ],
+            3: [ // True/False
+                {
+                    question: "FPS yang lebih tinggi selalu menghasilkan animasi yang lebih baik",
+                    options: ["Benar", "Salah"],
+                    correct: "Salah"
+                },
+                {
+                    question: "Anticipation adalah salah satu dari 12 prinsip animasi Disney",
+                    options: ["Benar", "Salah"],
+                    correct: "Benar"
+                },
+                {
+                    question: "Motion blur hanya bisa dibuat di software 3D",
+                    options: ["Benar", "Salah"],
+                    correct: "Salah"
+                },
+                {
+                    question: "Storyboard dibuat setelah animasi selesai",
+                    options: ["Benar", "Salah"],
+                    correct: "Salah"
+                },
+                {
+                    question: "Tweening adalah proses membuat frame di antara keyframe",
+                    options: ["Benar", "Salah"],
+                    correct: "Benar"
+                }
+            ],
+            4: [ // Fill in the Blank
+                {
+                    question: "Prinsip animasi yang membuat objek terlihat memiliki berat disebut ___",
+                    options: ["Squash and Stretch", "Timing", "Weight", "Gravity"],
+                    correct: "Squash and Stretch",
+                    blank: "___"
+                },
+                {
+                    question: "Format video yang paling umum untuk animasi adalah ___",
+                    options: [".mp4", ".avi", ".mov", ".gif"],
+                    correct: ".mp4",
+                    blank: "___"
+                },
+                {
+                    question: "Teknik animasi 3D yang memberikan tulang pada karakter disebut ___",
+                    options: ["Rigging", "Modeling", "Texturing", "Rendering"],
+                    correct: "Rigging",
+                    blank: "___"
+                },
+                {
+                    question: "Animasi yang dibuat dengan menggerakkan objek fisik disebut ___",
+                    options: ["Stop Motion", "2D Animation", "3D Animation", "Motion Graphics"],
+                    correct: "Stop Motion",
+                    blank: "___"
+                },
+                {
+                    question: "Proses menggabungkan semua elemen animasi disebut ___",
+                    options: ["Compositing", "Modeling", "Rigging", "Texturing"],
+                    correct: "Compositing",
+                    blank: "___"
+                }
+            ],
+            5: [ // Boss Challenge - Mix of all types
+                {
+                    type: 'drag-drop',
+                    question: "BOSS: Drag the correct 12 principles of animation founder",
+                    options: ["Walt Disney Studios", "Pixar", "DreamWorks", "Studio Ghibli"],
+                    correct: "Walt Disney Studios"
+                },
+                {
+                    type: 'multiple-choice',
+                    question: "BOSS: Berapa prinsip dasar animasi menurut Disney?",
+                    options: ["12 prinsip", "10 prinsip", "8 prinsip", "15 prinsip"],
+                    correct: "12 prinsip"
+                },
+                {
+                    type: 'true-false',
+                    question: "BOSS: Animasi 2D sudah tidak relevan di era digital",
+                    options: ["Benar", "Salah"],
+                    correct: "Salah"
+                },
+                {
+                    type: 'fill-blank',
+                    question: "BOSS: Software animasi 3D yang gratis dan open source adalah ___",
+                    options: ["Blender", "Maya", "3ds Max", "Cinema 4D"],
+                    correct: "Blender",
+                    blank: "___"
+                },
+                {
+                    type: 'multiple-choice',
+                    question: "BOSS: Apa yang dimaksud dengan 'follow through' dalam animasi?",
+                    options: ["Gerakan lanjutan setelah aksi utama", "Gerakan persiapan", "Gerakan bersamaan", "Gerakan mundur"],
+                    correct: "Gerakan lanjutan setelah aksi utama"
+                }
+            ]
+        };
+
+        // Leaderboard System
+        let leaderboard = JSON.parse(localStorage.getItem('dkvGameLeaderboard')) || [];
+
+        // Timer Functions
+        function startTimer() {
+            gameState.timer = 30;
+            updateTimerDisplay();
+            
+            gameState.timerInterval = setInterval(() => {
+                gameState.timer--;
+                updateTimerDisplay();
+                
+                if (gameState.timer <= 0) {
+                    clearInterval(gameState.timerInterval);
+                    handleTimeout();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (gameState.timerInterval) {
+                clearInterval(gameState.timerInterval);
+                gameState.timerInterval = null;
+            }
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerDisplay').textContent = gameState.timer;
+            
+            const percentage = (gameState.timer / 30) * 100;
+            const timerBar = document.getElementById('timerBar');
+            timerBar.style.width = percentage + '%';
+            
+            // Change color based on time left
+            timerBar.className = 'timer-bar h-2 sm:h-3 rounded-full transition-all duration-100';
+            if (percentage > 60) {
+                timerBar.classList.add('timer-green');
+            } else if (percentage > 30) {
+                timerBar.classList.add('timer-yellow');
+            } else {
+                timerBar.classList.add('timer-red');
+            }
+        }
+
+        function handleTimeout() {
+            const gameContent = document.getElementById('gameContent');
+            gameContent.classList.add('timeout-animation');
+            
+            setTimeout(() => {
+                showFeedback(false, true); // false for incorrect, true for timeout
+            }, 1000);
+        }
+
+        // Language Functions
+        function changeLanguage(lang) {
+            gameState.currentLanguage = lang;
+            localStorage.setItem('dkvGameLanguage', lang);
+            
+            // Update language buttons
+            document.getElementById('langId').className = lang === 'id' ? 
+                'bg-blue-500 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm' :
+                'bg-gray-300 text-gray-700 py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm';
+            document.getElementById('langEn').className = lang === 'en' ? 
+                'bg-blue-500 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm' :
+                'bg-gray-300 text-gray-700 py-2 px-4 rounded-xl font-medium transition-all duration-300 text-sm';
+            
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const lang = gameState.currentLanguage;
+            const texts = translations[lang];
+            
+            // Update all elements with data-text attribute
+            document.querySelectorAll('[data-text]').forEach(element => {
+                const key = element.getAttribute('data-text');
+                if (texts[key]) {
+                    element.textContent = texts[key];
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-placeholder');
+                if (texts[key]) {
+                    element.placeholder = texts[key];
+                }
+            });
+        }
+
+        // Menu Functions
+        function showLeaderboard() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('leaderboardScreen').classList.remove('hidden');
+            updateLeaderboardDisplay();
+        }
+
+        function showAchievements() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('achievementsScreen').classList.remove('hidden');
+            updateAchievementsDisplay();
+        }
+
+        function showTutorial() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('tutorialScreen').classList.remove('hidden');
+        }
+
+        function showSettings() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('settingsScreen').classList.remove('hidden');
+        }
+
+        function backToWelcome() {
+            document.getElementById('leaderboardScreen').classList.add('hidden');
+            document.getElementById('achievementsScreen').classList.add('hidden');
+            document.getElementById('tutorialScreen').classList.add('hidden');
+            document.getElementById('settingsScreen').classList.add('hidden');
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+        }
+
+        // Leaderboard Functions
+        function updateLeaderboardDisplay() {
+            const leaderboardList = document.getElementById('leaderboardList');
+            
+            if (leaderboard.length === 0) {
+                leaderboardList.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <div class="text-3xl mb-2">📊</div>
+                        <p class="text-sm">${gameState.currentLanguage === 'id' ? 'Belum ada data pemain' : 'No player data yet'}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by score (level * 1000 + time bonus)
+            const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
+            
+            leaderboardList.innerHTML = sortedLeaderboard.slice(0, 10).map((player, index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+                const timeText = gameState.currentLanguage === 'id' ? 'detik' : 'sec';
+                
+                return `
+                    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-3 sm:p-4 border border-yellow-200">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2 sm:space-x-3">
+                                <span class="text-lg sm:text-xl">${medal}</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800 text-sm sm:text-base">${player.name}</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">${player.major} - Kelas ${player.class || 'N/A'}</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-purple-600 text-sm sm:text-base">Level ${player.level}</div>
+                                <div class="text-xs sm:text-sm text-gray-500">${player.time}${timeText}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addToLeaderboard(name, major, playerClass, level, time) {
+            const score = level * 1000 + Math.max(0, 300 - time); // Higher level = higher score, faster time = bonus
+            
+            leaderboard.push({
+                name: name,
+                major: major,
+                class: playerClass,
+                level: level,
+                time: time,
+                score: score,
+                date: new Date().toISOString()
+            });
+            
+            localStorage.setItem('dkvGameLeaderboard', JSON.stringify(leaderboard));
+        }
+
+        function resetLeaderboard() {
+            const confirmText = gameState.currentLanguage === 'id' ? 
+                'Apakah kamu yakin ingin menghapus semua data leaderboard?' :
+                'Are you sure you want to delete all leaderboard data?';
+                
+            if (confirm(confirmText)) {
+                leaderboard = [];
+                localStorage.removeItem('dkvGameLeaderboard');
+                updateLeaderboardDisplay();
+            }
+        }
+
+        // Achievement Functions
+        function unlockAchievement(achievementId) {
+            // Check if achievement already exists
+            if (achievements.find(a => a.id === achievementId)) {
+                return false; // Already unlocked
+            }
+            
+            const achievement = achievementTypes[achievementId];
+            if (!achievement) return false;
+            
+            // Add to achievements
+            const newAchievement = {
+                ...achievement,
+                unlockedAt: new Date().toISOString(),
+                playerName: gameState.playerName
+            };
+            
+            achievements.push(newAchievement);
+            localStorage.setItem('dkvGameAchievements', JSON.stringify(achievements));
+            
+            // Show achievement popup
+            showAchievementPopup(newAchievement);
+            
+            return true;
+        }
+
+        function showAchievementPopup(achievement) {
+            const modal = document.getElementById('achievementModal');
+            const icon = document.getElementById('achievementIcon');
+            const card = document.getElementById('achievementCard');
+            const cardIcon = document.getElementById('achievementCardIcon');
+            const name = document.getElementById('achievementName');
+            const description = document.getElementById('achievementDescription');
+            const rarity = document.getElementById('achievementRarity');
+            
+            icon.textContent = achievement.icon;
+            cardIcon.textContent = achievement.icon;
+            name.textContent = achievement.name[gameState.currentLanguage];
+            description.textContent = achievement.description[gameState.currentLanguage];
+            rarity.textContent = achievement.rarity.toUpperCase();
+            
+            // Set card gradient based on achievement
+            card.className = `bg-gradient-to-r ${achievement.color} p-4 rounded-xl mb-4`;
+            
+            // Add special effects for rare achievements
+            if (achievement.rarity === 'rare') {
+                card.classList.add('rare-glow');
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeAchievementModal() {
+            document.getElementById('achievementModal').classList.add('hidden');
+        }
+
+        function updateAchievementsDisplay() {
+            const achievementsList = document.getElementById('achievementsList');
+            
+            if (achievements.length === 0) {
+                achievementsList.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <div class="text-3xl mb-2">🏅</div>
+                        <p class="text-sm">${gameState.currentLanguage === 'id' ? 'Belum ada achievement' : 'No achievements yet'}</p>
+                        <p class="text-xs text-gray-400 mt-1">${gameState.currentLanguage === 'id' ? 'Mainkan game untuk mendapatkan achievement!' : 'Play the game to earn achievements!'}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by unlock date (newest first)
+            const sortedAchievements = [...achievements].sort((a, b) => new Date(b.unlockedAt) - new Date(a.unlockedAt));
+            
+            achievementsList.innerHTML = sortedAchievements.map(achievement => {
+                const rarityColors = {
+                    'common': 'border-gray-300 bg-gray-50',
+                    'uncommon': 'border-green-300 bg-green-50',
+                    'rare': 'border-purple-300 bg-purple-50 rare-glow'
+                };
+                
+                const rarityText = {
+                    'common': gameState.currentLanguage === 'id' ? 'UMUM' : 'COMMON',
+                    'uncommon': gameState.currentLanguage === 'id' ? 'LANGKA' : 'UNCOMMON',
+                    'rare': gameState.currentLanguage === 'id' ? 'SANGAT LANGKA' : 'RARE'
+                };
+                
+                const unlockDate = new Date(achievement.unlockedAt).toLocaleDateString();
+                
+                return `
+                    <div class="rounded-xl p-4 border-2 ${rarityColors[achievement.rarity]} transform hover:scale-105 transition-all duration-300">
+                        <div class="flex items-center space-x-3">
+                            <div class="text-3xl">${achievement.icon}</div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <h3 class="font-semibold text-gray-800 text-sm sm:text-base">${achievement.name[gameState.currentLanguage]}</h3>
+                                    <span class="px-2 py-1 bg-gradient-to-r ${achievement.color} text-white text-xs rounded-full font-medium">
+                                        ${rarityText[achievement.rarity]}
+                                    </span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-2">${achievement.description[gameState.currentLanguage]}</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">${achievement.playerName}</span>
+                                    <span class="text-xs text-gray-400">${unlockDate}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function checkAchievements(context) {
+            const gameCount = parseInt(localStorage.getItem('dkvGameCount') || '0') + 1;
+            localStorage.setItem('dkvGameCount', gameCount.toString());
+            
+            // Check for various achievements based on context
+            switch (context) {
+                case 'boss-win':
+                    unlockAchievement('boss-winner');
+                    break;
+                case 'boss-lose':
+                case 'game-over':
+                    unlockAchievement('smart-player');
+                    break;
+                case 'first-complete':
+                    unlockAchievement('first-timer');
+                    break;
+                case 'speed-run':
+                    const totalTime = Math.floor((Date.now() - gameState.startTime) / 1000);
+                    if (totalTime < 60) {
+                        unlockAchievement('speed-demon');
+                    }
+                    break;
+            }
+            
+            // Check persistent player achievement
+            if (gameCount >= 5) {
+                unlockAchievement('persistent');
+            }
+        }
+
+        // Pause Functions
+        function pauseGame() {
+            stopTimer();
+            document.getElementById('pauseModal').classList.remove('hidden');
+        }
+
+        function resumeGame() {
+            document.getElementById('pauseModal').classList.add('hidden');
+            startTimer();
+        }
+
+        function goHome() {
+            stopTimer();
+            
+            // Hide all screens
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('pauseModal').classList.add('hidden');
+            document.getElementById('feedbackModal').classList.add('hidden');
+            
+            // Show welcome screen
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+            
+            // Reset game state
+            gameState.currentLevel = 1;
+            gameState.currentQuestion = 1;
+            gameState.currentAnswer = null;
+            gameState.draggedItem = null;
+        }
+
+        // Game Functions
+        function startGame() {
+            const name = document.getElementById('playerName').value.trim();
+            const major = document.getElementById('playerMajor').value;
+            const playerClass = document.getElementById('playerClass').value;
+            
+            const alertText = gameState.currentLanguage === 'id' ? 
+                'Mohon isi nama, pilih jurusan, dan kelas terlebih dahulu!' :
+                'Please fill in your name and select major and class first!';
+            
+            if (!name || !major || !playerClass) {
+                alert(alertText);
+                return;
+            }
+            
+            gameState.playerName = name;
+            gameState.playerMajor = major;
+            gameState.playerClass = playerClass;
+            gameState.startTime = Date.now();
+            gameState.currentLevel = 1;
+            gameState.currentQuestion = 1;
+            gameState.score = 0;
+            
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            
+            document.getElementById('playerInfo').textContent = `${name} - ${major} - Kelas ${playerClass}`;
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            stopTimer(); // Stop any existing timer
+            
+            const level = gameState.currentLevel;
+            const questionNum = gameState.currentQuestion;
+            
+            // Update level type display
+            const levelType = gameState.levelTypes[level - 1];
+            const levelTypeText = translations[gameState.currentLanguage].levelTypes[levelType];
+            document.getElementById('levelType').textContent = levelTypeText;
+            
+            document.getElementById('currentLevel').textContent = `Level ${level}`;
+            document.getElementById('questionCounter').textContent = `Soal ${questionNum} dari 5`;
+            
+            const progress = ((questionNum - 1) / 5) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            
+            const currentQ = questions[level][questionNum - 1];
+            document.getElementById('questionText').textContent = currentQ.question;
+            
+            // Reset answer state
+            gameState.currentAnswer = null;
+            document.getElementById('submitBtn').disabled = true;
+            
+            // Load appropriate game type
+            loadGameType(level, currentQ);
+            
+            // Start timer
+            startTimer();
+        }
+
+        function loadGameType(level, question) {
+            const gameContent = document.getElementById('gameContent');
+            gameContent.className = ''; // Reset classes
+            
+            if (level === 1 || (level === 5 && question.type === 'drag-drop')) {
+                loadDragDrop(question);
+            } else if (level === 2 || (level === 5 && question.type === 'multiple-choice')) {
+                loadMultipleChoice(question);
+            } else if (level === 3 || (level === 5 && question.type === 'true-false')) {
+                loadTrueFalse(question);
+            } else if (level === 4 || (level === 5 && question.type === 'fill-blank')) {
+                loadFillBlank(question);
+            }
+        }
+
+        function loadDragDrop(question) {
+            const gameContent = document.getElementById('gameContent');
+            
+            // Shuffle options
+            const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+            
+            gameContent.innerHTML = `
+                <div class="mb-6 sm:mb-8">
+                    <h3 class="text-sm sm:text-lg font-medium text-gray-700 mb-4">Pilihan Jawaban:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" id="dragItems">
+                        ${shuffledOptions.map(option => `
+                            <div class="drag-item bg-gradient-to-r from-blue-100 to-purple-100 p-3 sm:p-4 rounded-xl border-2 border-blue-200 text-center font-medium text-gray-700 hover:from-blue-200 hover:to-purple-200 text-sm sm:text-base" draggable="true" data-option="${option}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-sm sm:text-lg font-medium text-gray-700 mb-4">Seret jawaban ke sini:</h3>
+                    <div class="drop-zone min-h-[80px] sm:min-h-[100px] rounded-xl flex items-center justify-center text-gray-500" id="dropZone">
+                        <span class="text-center text-sm sm:text-base">
+                            <div class="text-2xl sm:text-3xl mb-2">📥</div>
+                            <div>${translations[gameState.currentLanguage].dragHere}</div>
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            setupDragDrop();
+        }
+
+        function setupDragDrop() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZone = document.getElementById('dropZone');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    gameState.draggedItem = item.dataset.option;
+                    item.style.opacity = '0.5';
+                });
+                
+                item.addEventListener('dragend', (e) => {
+                    item.style.opacity = '1';
+                });
+                
+                // Touch support for mobile
+                item.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    gameState.draggedItem = item.dataset.option;
+                    item.style.opacity = '0.5';
+                });
+                
+                item.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    item.style.opacity = '1';
+                    
+                    // Simple touch drop - if touched, consider it dropped
+                    if (gameState.draggedItem) {
+                        gameState.currentAnswer = gameState.draggedItem;
+                        dropZone.innerHTML = `
+                            <div class="bg-white p-3 sm:p-4 rounded-lg border-2 border-green-300 font-medium text-gray-700 text-sm sm:text-base">
+                                ${gameState.draggedItem}
+                            </div>
+                        `;
+                        dropZone.classList.add('filled');
+                        submitBtn.disabled = false;
+                    }
+                });
+            });
+            
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+            
+            dropZone.addEventListener('dragleave', (e) => {
+                dropZone.classList.remove('drag-over');
+            });
+            
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                
+                if (gameState.draggedItem) {
+                    gameState.currentAnswer = gameState.draggedItem;
+                    dropZone.innerHTML = `
+                        <div class="bg-white p-3 sm:p-4 rounded-lg border-2 border-green-300 font-medium text-gray-700 text-sm sm:text-base">
+                            ${gameState.draggedItem}
+                        </div>
+                    `;
+                    dropZone.classList.add('filled');
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        function loadMultipleChoice(question) {
+            const gameContent = document.getElementById('gameContent');
+            
+            // Shuffle options
+            const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+            
+            gameContent.innerHTML = `
+                <div class="space-y-3 sm:space-y-4">
+                    ${shuffledOptions.map((option, index) => `
+                        <button class="choice-button w-full p-3 sm:p-4 text-left rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 text-sm sm:text-base" data-option="${option}">
+                            <span class="font-medium text-blue-600">${String.fromCharCode(65 + index)}.</span> ${option}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            
+            setupMultipleChoice();
+        }
+
+        function setupMultipleChoice() {
+            const choiceButtons = document.querySelectorAll('.choice-button');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove selected class from all buttons
+                    choiceButtons.forEach(btn => btn.classList.remove('selected'));
+                    
+                    // Add selected class to clicked button
+                    button.classList.add('selected');
+                    
+                    gameState.currentAnswer = button.dataset.option;
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+
+        function loadTrueFalse(question) {
+            const gameContent = document.getElementById('gameContent');
+            
+            gameContent.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <button class="choice-button bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 p-4 sm:p-6 rounded-xl border-2 border-green-300 text-center font-semibold text-green-700 text-sm sm:text-lg" data-option="Benar">
+                        ✅ ${gameState.currentLanguage === 'id' ? 'BENAR' : 'TRUE'}
+                    </button>
+                    <button class="choice-button bg-gradient-to-r from-red-100 to-red-200 hover:from-red-200 hover:to-red-300 p-4 sm:p-6 rounded-xl border-2 border-red-300 text-center font-semibold text-red-700 text-sm sm:text-lg" data-option="Salah">
+                        ❌ ${gameState.currentLanguage === 'id' ? 'SALAH' : 'FALSE'}
+                    </button>
+                </div>
+            `;
+            
+            setupTrueFalse();
+        }
+
+        function setupTrueFalse() {
+            const choiceButtons = document.querySelectorAll('.choice-button');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove selected class from all buttons
+                    choiceButtons.forEach(btn => btn.classList.remove('selected'));
+                    
+                    // Add selected class to clicked button
+                    button.classList.add('selected');
+                    
+                    gameState.currentAnswer = button.dataset.option;
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+
+        function loadFillBlank(question) {
+            const gameContent = document.getElementById('gameContent');
+            
+            // Shuffle options
+            const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+            
+            gameContent.innerHTML = `
+                <div class="mb-6 sm:mb-8">
+                    <div class="bg-gray-50 p-4 sm:p-6 rounded-xl border-2 border-gray-200 mb-4 sm:mb-6">
+                        <p class="text-sm sm:text-lg text-gray-700 leading-relaxed">
+                            ${question.question.replace(question.blank, '<span class="inline-block w-20 sm:w-24 h-8 sm:h-10 bg-yellow-200 border-b-2 border-yellow-400 mx-2 rounded"></span>')}
+                        </p>
+                    </div>
+                    
+                    <h3 class="text-sm sm:text-lg font-medium text-gray-700 mb-4">Pilih jawaban yang tepat:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        ${shuffledOptions.map(option => `
+                            <button class="choice-button p-3 sm:p-4 text-center rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 font-medium text-sm sm:text-base" data-option="${option}">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            setupMultipleChoice(); // Same setup as multiple choice
+        }
+
+        function checkAnswer() {
+            stopTimer();
+            
+            const level = gameState.currentLevel;
+            const questionNum = gameState.currentQuestion;
+            const currentQ = questions[level][questionNum - 1];
+            const isCorrect = gameState.currentAnswer === currentQ.correct;
+            
+            showFeedback(isCorrect, false);
+        }
+
+        function showFeedback(isCorrect, isTimeout = false) {
+            const modal = document.getElementById('feedbackModal');
+            const icon = document.getElementById('feedbackIcon');
+            const title = document.getElementById('feedbackTitle');
+            const message = document.getElementById('feedbackMessage');
+            
+            if (isTimeout) {
+                icon.textContent = '⏰';
+                title.textContent = translations[gameState.currentLanguage].timeout;
+                title.className = 'text-lg sm:text-2xl font-bold mb-2 text-yellow-600';
+                message.textContent = translations[gameState.currentLanguage].timeoutMessage;
+                
+                // Check achievements for timeout/failure
+                if (gameState.currentLevel === 5) {
+                    checkAchievements('boss-lose');
+                } else {
+                    checkAchievements('game-over');
+                }
+                
+                // Reset to level 1
+                gameState.currentLevel = 1;
+                gameState.currentQuestion = 1;
+            } else if (isCorrect) {
+                icon.textContent = '✅';
+                title.textContent = translations[gameState.currentLanguage].correct;
+                title.className = 'text-lg sm:text-2xl font-bold mb-2 text-green-600';
+                message.textContent = translations[gameState.currentLanguage].correctMessage;
+                
+                // Add correct animation
+                document.getElementById('gameContent').classList.add('correct-animation');
+            } else {
+                const level = gameState.currentLevel;
+                const questionNum = gameState.currentQuestion;
+                const currentQ = questions[level][questionNum - 1];
+                
+                icon.textContent = '❌';
+                title.textContent = translations[gameState.currentLanguage].wrong;
+                title.className = 'text-lg sm:text-2xl font-bold mb-2 text-red-600';
+                const correctAnswerText = gameState.currentLanguage === 'id' ? 
+                    `Jawaban yang benar adalah: ${currentQ.correct}. ${translations[gameState.currentLanguage].wrongMessage}` :
+                    `The correct answer is: ${currentQ.correct}. ${translations[gameState.currentLanguage].wrongMessage}`;
+                message.textContent = correctAnswerText;
+                
+                // Add wrong animation
+                document.getElementById('gameContent').classList.add('wrong-animation');
+                
+                // Check achievements for wrong answer
+                if (gameState.currentLevel === 5) {
+                    checkAchievements('boss-lose');
+                } else {
+                    checkAchievements('game-over');
+                }
+                
+                // Reset to level 1
+                gameState.currentLevel = 1;
+                gameState.currentQuestion = 1;
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('hidden');
+            
+            if (gameState.currentQuestion < 5) {
+                gameState.currentQuestion++;
+                loadQuestion();
+            } else {
+                // Level completed
+                if (gameState.currentLevel < gameState.maxLevel) {
+                    gameState.currentLevel++;
+                    gameState.currentQuestion = 1;
+                    loadQuestion();
+                } else {
+                    // Game completed
+                    showCompletionScreen();
+                }
+            }
+        }
+
+        function showCompletionScreen() {
+            stopTimer();
+            
+            // Calculate total time in seconds
+            const totalTime = Math.floor((Date.now() - gameState.startTime) / 1000);
+            
+            // Check achievements for completion
+            checkAchievements('boss-win'); // Boss winner achievement
+            checkAchievements('first-complete'); // First timer achievement
+            checkAchievements('speed-run'); // Speed demon achievement
+            
+            // Add to leaderboard
+            addToLeaderboard(gameState.playerName, gameState.playerMajor, gameState.playerClass, gameState.currentLevel, totalTime);
+            
+            // Update final time display
+            const timeText = gameState.currentLanguage === 'id' ? 'detik' : 'seconds';
+            document.getElementById('finalTime').textContent = `Total Waktu: ${totalTime} ${timeText}`;
+            
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('completionScreen').classList.remove('hidden');
+        }
+
+        function restartGame() {
+            stopTimer();
+            
+            gameState.currentLevel = 1;
+            gameState.currentQuestion = 1;
+            gameState.currentAnswer = null;
+            gameState.draggedItem = null;
+            
+            document.getElementById('completionScreen').classList.add('hidden');
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+            
+            // Reset form
+            document.getElementById('playerName').value = '';
+            document.getElementById('playerMajor').value = '';
+            document.getElementById('playerClass').value = '';
+        }
+
+        // Theme Functions
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const gameThemeToggle = document.getElementById('gameThemeToggle');
+            
+            if (body.classList.contains('dark')) {
+                // Switch to light mode
+                body.classList.remove('dark');
+                localStorage.setItem('dkvGameTheme', 'light');
+                
+                if (themeToggle) {
+                    themeToggle.classList.remove('dark-mode');
+                }
+                if (gameThemeToggle) {
+                    gameThemeToggle.classList.remove('dark-mode');
+                }
+            } else {
+                // Switch to dark mode
+                body.classList.add('dark');
+                localStorage.setItem('dkvGameTheme', 'dark');
+                
+                if (themeToggle) {
+                    themeToggle.classList.add('dark-mode');
+                }
+                if (gameThemeToggle) {
+                    gameThemeToggle.classList.add('dark-mode');
+                }
+            }
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('dkvGameTheme') || 'light';
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const gameThemeToggle = document.getElementById('gameThemeToggle');
+            
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                if (themeToggle) {
+                    themeToggle.classList.add('dark-mode');
+                }
+                if (gameThemeToggle) {
+                    gameThemeToggle.classList.add('dark-mode');
+                }
+            } else {
+                body.classList.remove('dark');
+                if (themeToggle) {
+                    themeToggle.classList.remove('dark-mode');
+                }
+                if (gameThemeToggle) {
+                    gameThemeToggle.classList.remove('dark-mode');
+                }
+            }
+        }
+
+        // Initialize game
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved language
+            const savedLanguage = localStorage.getItem('dkvGameLanguage') || 'id';
+            gameState.currentLanguage = savedLanguage;
+            
+            // Update language buttons
+            changeLanguage(savedLanguage);
+            
+            // Initialize theme
+            initializeTheme();
+            
+            // Prevent default drag behavior on images and other elements
+            document.addEventListener('dragstart', function(e) {
+                if (!e.target.classList.contains('drag-item')) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Game is ready
+            console.log('Game initialized successfully!');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96dd3eca5291f90a',t:'MTc1NDk3MzEwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
